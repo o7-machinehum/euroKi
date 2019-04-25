@@ -1,6 +1,13 @@
 # euroKi
 Simple script for making eurorack face plates. Shows the rails and where your PCB is going to live. 
 
+```bash
+git clone https://github.com/Machine-Hum/euroKi
+cd euroKi
+python example.py
+
+```
+
 ```python
 import shutil
 import pdb
