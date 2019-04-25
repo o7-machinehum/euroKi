@@ -1,7 +1,3 @@
-# euroKi
-Simple script for making eurorack face plates. Shows the rails and where your PCB is going to live. 
-
-```python
 import shutil
 import pdb
 from operator import add
@@ -29,8 +25,3 @@ er.drawJack([26, 76])
 
 er.fin() # Cleanup
 # ---------------------------------------------------------------------
-
-```
-
-![2D ](images/2d.PNG "2D")<br>
-![3D ](images/3d.PNG "3D")
