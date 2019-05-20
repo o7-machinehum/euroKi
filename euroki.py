@@ -21,7 +21,9 @@ class euroKi:
              f.writelines(self.data)
 
     def insertText(self, line):
-        self.data.insert(self.Line, line)
+        # pdb.set_trace()
+        self.data.insert(self.Line, line + '\n')
+        # self.data.append(line + '\n')
         self.Line += 1
 
     def drawLine(self, start, end, layer):
@@ -32,8 +34,12 @@ class euroKi:
         self.drawLine(list(map(add,self.bottomLeft,[0, 9.25])), list(map(add,self.bottomRight,[0, 9.25])), 'Dwgs.User')
 
     def drawHole(self, loc, size):
-        self.insertText('(via (at %d %d) (size %f) (drill %f) (layers F.Cu B.Cu) (net 0))' % (self.Datum[x] + loc[x], self.Datum[y] - loc[y], size+0.1, size))
-
+        # self.insertText('(via (at %d %d) (size %f) (drill %f) (layers F.Cu B.Cu) (net 0))' % (self.Datum[x] + loc[x], self.Datum[y] - loc[y], size+0.1, size))
+        self.insertText('(module MountingHole:MountingHole_3.5mm (layer F.Cu) (tedit 5CE30AB0) (tstamp 5CEF27D3)')
+        self.insertText('(at %f %f)' % (self.Datum[x] + loc[x], self.Datum[y] - loc[y]))
+        self.insertText('(pad 1 np_thru_hole circle (at 0 0) (size %f %f) (drill %f) (layers *.Cu *.Mask))' % (size, size, size))
+        self.insertText(')')
+        
     def drawOutline(self, numHp):
         self.HP = numHp
 
@@ -74,3 +80,5 @@ class euroKi:
     def drawJack(self, loc):
         self.drawHole(list(map(add,self.pcbDatum, loc)), self.jack)
 
+    def drawItem(self, loc, item):
+        self.drawHole(list(map(add,self.pcbDatum, loc)), item)
